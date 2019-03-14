@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 namespace Excercise_1
 {
+    // responsible for one function
     public class SingleMission : IMission
     {
         private string missionName;
-        private string missionType;
+        private const string missionType = "Single";
         private funcDelegate funcD;
-        public event EventHandler<double> OnCalculate; // An Event of when a mission is activated
+
+        // An Event of when a mission is activated
+        public event EventHandler<double> OnCalculate;
 
         public SingleMission(funcDelegate func, string name)
         {
             this.funcD = func;
-            this.missionType = "Single";
+            //this.missionType = "Single";
             this.missionName = name;
         }
 
@@ -25,10 +28,10 @@ namespace Excercise_1
 
         public double Calculate(double value)
         {
-            //calculate the result
+            // calculate the result
             double result = funcD(value);
 
-            //invoke the event
+            // invoke the event
             OnCalculate?.Invoke(this, result);
 
             return result;
